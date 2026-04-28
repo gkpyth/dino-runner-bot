@@ -32,12 +32,13 @@ with mss.MSS() as sct:
 
         img = np.array(sct.grab(screen_region))
 
-        if get_bg(img) == "light":
+        bg = get_bg(img)
 
+        if bg == "light":
             if (img[:,:,:3].mean(axis=2) < 128).any():
                 pyautogui.hotkey("space")
 
-        elif get_bg(img) == "dark":
+        elif bg == "dark":
             if (img[:,:,:3].mean(axis=2) > 128).any():
                 pyautogui.hotkey("space")
 # ==================== MAIN GAME LOOP ====================
